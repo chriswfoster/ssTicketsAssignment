@@ -1,7 +1,7 @@
 import React, {Component} from 'react'
 import socketIOClient from "socket.io-client";
 
-const socket = socketIOClient("/")
+const socket = socketIOClient(":1738/")
 
 const AcceptedTicket = props => {
 

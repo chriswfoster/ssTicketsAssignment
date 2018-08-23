@@ -8,7 +8,7 @@ class Admin extends Component {
             tickets: [],
             ticketNameText: ""
         }
-        this.socket = socketIOClient("/")
+        this.socket = socketIOClient(":1738/")
     }
     componentDidMount() {
         this.socket.on("Tickets", tickets => {
