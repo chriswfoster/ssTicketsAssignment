@@ -13,7 +13,7 @@ class Home extends Component {
       tickets: [],
       endpoint: "/"
     }
-    this.socket = socketIOClient(":1738/")
+    this.socket = socketIOClient(":80/")
   }
   componentDidMount() {
     this.socket.on("Tickets", tickets => {
