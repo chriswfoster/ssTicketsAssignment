@@ -1,4 +1,6 @@
 const express = require('express');
+const http = require("http")
+const socketIo = require("socket.io")
 const cors = require('cors')
 const {json} = require('body-parser')
 
@@ -8,7 +10,40 @@ const PORT = 1738;
 const app = express();
 app.use(json());
 app.use(cors());
+const server = http.createServer(app);
+const io = socketIo(server)
+app.use(express.static(`${__dirname}/../build`))
+
+let tickets = [
+    {
+        id: 0,
+        title: "First ticket",
+        status: "New",
+    }
+]
+let id = 1;
+
+io.on("connection", socket => {
+    console.log("A user has connected to the system");
+    io.sockets.emit("Tickets", tickets)
+    socket.on("AddTicket", ticket => {
+        tickets.push(...ticket, id)
+        id++
+        io.sockets.emit("Tickets", tickets)
+    })
+    socket.on("AcceptTicket", id => {
+        tickets.forEach((ticket) => { 
+            ticket.id===id ? ticket.status="Accepted" : null
+        })
+        io.sockets.emit("Tickets", tickets)
+    })
+    socket.on("DeleteTicket", id => {
+        tickets.forEach((ticket, i) => {
+            ticket.id=== id ? tickets.splice(i, 1) : null
+        })
+        io.sockets.emit("Tickets", tickets)
+    })
+})
 
 
-
-app.listen(PORT, console.log(`Listening on port ${PORT}`));
+server.listen(PORT, console.log(`Listening on port ${PORT}`));

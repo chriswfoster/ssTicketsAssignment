@@ -1,18 +1,31 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
+import socketIOClient from "socket.io-client"
+
+
+
 import './App.css';
+import TicketBox from './Components/NewTickets/TicketBox';
 
 class App extends Component {
+  constructor() {
+    super();
+    this.state = {
+      tickets: [],
+      endpoint: "/"
+    }
+    this.socket = socketIOClient(":1738/")
+  }
+  componentDidMount() {
+    this.socket.on("Tickets", tickets => {
+      this.setState({tickets})
+    })
+  }
+
   render() {
     return (
       <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h1 className="App-title">Welcome to React</h1>
-        </header>
-        <p className="App-intro">
-          To get started, edit <code>src/App.js</code> and save to reload.
-        </p>
+      <p className="welcomeAgent" >Welcome Agent Bob</p>
+        <TicketBox ticketList = {this.state.tickets}/>
       </div>
     );
   }
