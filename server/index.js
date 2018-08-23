@@ -46,5 +46,10 @@ io.on("connection", socket => {
     })
 })
 
+const path = require("path")
+app.get("*", (req, res, next) => {
+  res.sendFile(path.join(__dirname, "/../build/index.html"))
+})
+
 
 server.listen(PORT, console.log(`Listening on port ${PORT}`));
