@@ -9,7 +9,7 @@ class NewTicket extends Component {
           tickets: [],
           endpoint: "/"
         }
-        this.socket = socketIOClient(":1738/")
+        this.socket = socketIOClient("/")
       }
 
     acceptTicket(id) {
