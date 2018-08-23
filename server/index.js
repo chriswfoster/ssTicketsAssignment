@@ -27,7 +27,7 @@ io.on("connection", socket => {
     console.log("A user has connected to the system");
     io.sockets.emit("Tickets", tickets)
     socket.on("AddTicket", ticket => {
-        tickets.push(...ticket, id)
+        tickets.push({id, title: ticket, status:"New"})
         id++
         io.sockets.emit("Tickets", tickets)
     })
