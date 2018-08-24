@@ -4,8 +4,8 @@ const socketIo = require("socket.io")
 const cors = require('cors')
 const {json} = require('body-parser')
 
-const PORT = 1738;
-// const PORT = 80;
+// const PORT = 1738;
+const PORT = 80;
 
 
 const app = express();
@@ -16,11 +16,7 @@ const io = socketIo(server)
 app.use(express.static(`${__dirname}/../build`))
 
 let tickets = [
-    {
-        id: 0,
-        title: "First ticket",
-        status: "New",
-    }
+
 ]
 let id = 1;
 

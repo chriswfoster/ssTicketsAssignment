@@ -1,24 +1,68 @@
+@import '~antd/dist/antd.css';
 .App {
-  text-align: center;
-  
+  /* text-align: center; */
+ height: 418px;
+ overflow-y: scroll; 
+ overflow-x: hidden;
 }
 p {
   margin: 0px;
-
+padding: 0px;
 }
 .welcomeAgent{
-  background-color: lightblue;
+
   padding: 2px;
 }
 #bodyRoot {
   width: 330px;
   height: 420px;
+  overflow-x: hidden;
+  overflow-y: hidden;
 }
 
 .adminViewScroll {
   overflow-y: scroll;
 }
 
-button {
+.button {
   cursor: pointer;
+}
+
+.cogIcon {
+  position: absolute;
+  left: 290px;
+  top: 380px;
+}
+.fontSizeControl{
+font-size: 12px;
+padding: 2px;
+margin: 1px 1px 1px 1px;
+}
+.buttonStyles{
+  font-size: 12px;
+  border-style: solid;
+  border-radius: 5px;
+  border-width: 2px;
+  padding: 1px;
+  border-color: rgb(179, 179, 179);
+  margin: 1px 1px 1px 1px;
+  height: 30px;
+}
+
+.flexTitlebar {
+  display: flex;
+	flex-direction: row;
+	flex-wrap: nowrap;
+	justify-content: space-between;
+	align-items: stretch;
+  align-content: stretch;
+  border: solid 2px black;
+  padding: 5px;
+}
+
+.copyright {
+  position: fixed;
+  left: 0px;
+  top: 395px;
+  background-color: white;
 }

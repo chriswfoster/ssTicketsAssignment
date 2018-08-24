@@ -9,7 +9,7 @@ class NewTicket extends Component {
           tickets: [],
           endpoint: "/"
         }
-        this.socket = socketIOClient(":1738/")
+        this.socket = socketIOClient("/")
       }
 
     acceptTicket(id) {
@@ -20,9 +20,9 @@ class NewTicket extends Component {
         console.log(this.props)
         const {status, title, id} = this.props.ticket
         return (
-            <div >
-                <p style={{display: "inline"}}>{title} | {status} | </p>
-                <button style={{border: "none"}} onClick={() => this.acceptTicket(id)}>"Accept"</button>
+            <div className="fontSizeControl">
+                <p className="fontSizeControl" style={{display: "inline"}}>{title} | {status} | </p>
+                <p style={{display: "inline"}} className="buttonStyles button" onClick={() => this.acceptTicket(id)}>Accept</p>
             </div>
         )
     }
